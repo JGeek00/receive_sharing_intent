@@ -275,7 +275,7 @@ open class RSIShareViewController: SLComposeServiceViewController {
             if FileManager.default.fileExists(atPath: dstURL.path) {
                 try FileManager.default.removeItem(at: dstURL)
             }
-            if let pngData = UIImagePNGRepresentation(image) {
+            if let pngData = UIImage.pngData(image) {
                 try pngData.write(to: dstURL)
                 return true
             }
@@ -314,7 +314,7 @@ open class RSIShareViewController: SLComposeServiceViewController {
         //        let scale = UIScreen.main.scale
         assetImgGenerate.maximumSize = CGSize(width: 360, height: 360)
         do {
-            let time = CMTimeMake(600, 1)
+            let time = CMTimeMake(value: 600, timescale: 1)
             let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
             if let pngData = UIImagePNGRepresentation(UIImage(cgImage: img)) {
                 try pngData.write(to: thumbnailPath)
